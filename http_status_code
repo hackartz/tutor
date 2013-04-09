@@ -1,5 +1,6 @@
 2xx Successfull
 ----------------------------
+200 : Ok
 202 : Accepted
 204 : No Content
 205 : Reset Content
