@@ -29,9 +29,9 @@ public class Koneksi {
         conn = DriverManager.getConnection(url,user,pass);
         System.out.println("Koneksi Berhasil");
     } catch (SQLException e) {
-      System.out.println("SQLException: "+e.getMessage());
-      System.out.println("SQLState: "+e.getSQLState());
-      System.out.println("VendorError: "+e.getErrorCode());
+        System.out.println("SQLException: "+e.getMessage());
+        System.out.println("SQLState: "+e.getSQLState());
+        System.out.println("VendorError: "+e.getErrorCode());
     }
   }
 }
